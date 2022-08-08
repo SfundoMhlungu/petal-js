@@ -5,12 +5,29 @@
 // setChild - set in vdom - diff
 // remove - remove in vdom - diff
 
+
+
+
 export const views = {
 
 
 
 an : {
   name: 'an.js',
+  functions: {
+    print: {
+      type: 'function',
+      id: 'print',
+      body: '\r\n   console.log(data)\r\n   \r\n\r\n\r\n',
+      args: [ 'data' ]
+    },
+    canPrintel: {
+      type: 'function',
+      id: 'canPrintel',
+      body: '\r\n  console.log(el)\r\n\r\n\r\n',
+      args: [ 'el' ]
+    }
+  },
   app: [
     {
       root: {
@@ -84,7 +101,10 @@ an : {
               {
                 type: 'element',
                 node: 'div',
-                attrs: { class: 'explanation, ll', onclick: 'hide' },
+                attrs: {
+                  class: 'explanation, ll',
+                  onclick: { value: 'hide(this)' }
+                },
                 loc: { line: 33, column: 8 },
                 parent: 2,
                 children: [
@@ -195,7 +215,11 @@ an : {
                       {
                         type: 'element',
                         node: 'button',
-                        attrs: { onclick: { value: '#print(person)' } },
+                        attrs: {
+                          onclick: {
+                            value: '#print(person.name, person.age, person.avatar)'
+                          }
+                        },
                         loc: { line: 48, column: 16 },
                         parent: 10
                       }
@@ -224,28 +248,44 @@ an : {
       type: 'element',
       node: 'br',
       attrs: {},
-      loc: { line: 53, column: 3 }
+      loc: { line: 54, column: 3 }
     },
     {
       root: {
         type: 'element',
         node: 'div',
         attrs: { id: 'jjn' },
-        loc: { line: 56, column: 0 },
+        loc: { line: 57, column: 0 },
         children: [
           {
             type: 'element',
             node: 'label',
             attrs: {},
-            loc: { line: 57, column: 4 },
+            loc: { line: 58, column: 4 },
             parent: 13,
             children: [
               {
                 type: 'textNode',
                 value: 'hello world',
                 inState: false,
-                loc: { line: 58, column: 8 },
+                loc: { line: 59, column: 8 },
                 parent: 14
+              }
+            ]
+          },
+          {
+            type: 'element',
+            node: 'button',
+            attrs: { class: 'On', onclick: { value: 'operate(globObject)' } },
+            loc: { line: 60, column: 4 },
+            parent: 13,
+            children: [
+              {
+                type: 'textNode',
+                value: 'Global State',
+                inState: false,
+                loc: { line: 61, column: 8 },
+                parent: 15
               }
             ]
           },
@@ -253,7 +293,7 @@ an : {
             type: 'element',
             node: 'div',
             attrs: { class: 'talents' },
-            loc: { line: 59, column: 4 },
+            loc: { line: 62, column: 4 },
             parent: 13,
             children: [
               {
@@ -261,22 +301,22 @@ an : {
                 property: 'talent',
                 target: 'talents',
                 attrs: {},
-                loc: { line: 60, column: 8 },
-                parent: 15,
+                loc: { line: 63, column: 8 },
+                parent: 16,
                 children: [
                   {
                     type: 'element',
                     node: 'label',
                     attrs: {},
-                    loc: { line: 62, column: 12 },
-                    parent: 16,
+                    loc: { line: 65, column: 12 },
+                    parent: 17,
                     children: [
                       {
                         type: 'textNode',
                         value: 'talent.name',
                         inState: true,
-                        loc: { line: 63, column: 16 },
-                        parent: 17
+                        loc: { line: 66, column: 16 },
+                        parent: 18
                       }
                     ]
                   },
@@ -284,15 +324,15 @@ an : {
                     type: 'element',
                     node: 'label',
                     attrs: {},
-                    loc: { line: 64, column: 12 },
-                    parent: 16,
+                    loc: { line: 67, column: 12 },
+                    parent: 17,
                     children: [
                       {
                         type: 'textNode',
                         value: 'talent.level',
                         inState: true,
-                        loc: { line: 65, column: 16 },
-                        parent: 18
+                        loc: { line: 68, column: 16 },
+                        parent: 19
                       }
                     ]
                   }

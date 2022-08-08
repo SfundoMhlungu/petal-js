@@ -1,0 +1,60 @@
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+
+
+}
+
+*, *::after, *::before{
+    box-sizing: border-box;
+
+}
+
+
+body{
+  margin:0;
+  padding: 0;
+
+
+}
+
+ img{
+  object-cover: fit;
+  width: 50%;
+  
+}
+
+
+.nsf {
+ margin: 1.5em;
+ background: lightblue;
+ 
+}
+
+.explanation{
+  background: blue;
+}
+
+.nsf .em{
+
+
+
+
+}
+
+#jjn{
+
+display: flex;
+
+}
+
+#jjn .talents{
+  margin-left: 2rem;
+  width: 100%;
+  
+
+}
+
+#jjn .talents label{
+padding: 1.5em;
+}

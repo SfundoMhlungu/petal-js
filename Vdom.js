@@ -1,6 +1,23 @@
 
+function get_(obj, string, defaultValue){
+   const parts = string.split(/[\]\[\.]/).filter((x)=> x);
+   
+   let attempt = obj;
+   
+   for(let part of parts){
+   if(attempt == null || attempt[part] === undefined) return defaultValue;
+   attempt = attempt[part];
+   
+   }
+   return attempt;   
+
+}
+
+
+
 
 let Globalstate = null;
+let functions = null;
 let prevNode = null;
 let loop = false;
 let justLooped = false;
@@ -91,12 +108,72 @@ function SetAttribs(target, attrs){
       if(typeof attrs[attr] === "object"){
          // console.log("ATTR IS OBJECT ")
          //  console.log(attrs[attr])
-         let keys = attrs[attr].value.split(".")
-      // console.log(keys, "keys")
-         keys.forEach((key)=> {
-             val = val[key]
-             // console.log(val)
-         })
+         // console.log(typeof attr)
+         if(attr !== "onclick" && attr !== "onchange"){
+       
+            let keys = attrs[attr].value.split(".")
+         // console.log(keys, "keys")
+            keys.forEach((key)=> {
+               val = val[key]
+               // console.log(val)
+            })
+         }else{
+           
+             
+              let composedArgs =  ``
+             if(attrs[attr].value.startsWith("#")){
+                // console.log("in state func")
+                const str = attrs[attr].value
+                let args = str.slice(str.indexOf("("))
+                .replace(")", "").replace("(", "").split(",") 
+                args.forEach((arg, i)=> {
+                   if(i === args.length-1){
+                          composedArgs += `${arg}`
+                   }else{
+                      composedArgs += `${arg},`
+                   }
+               
+                })
+                 console.log(composedArgs, "composed args")
+           
+                 let id = str.slice(str.indexOf("#")+1, str.indexOf("("))
+                 
+             // functions.print("HELLLO WORLD")
+             if(attr === "onclick"){
+                   // console.log(functions)
+                     function encap(){
+                            const fns = functions
+                         return function() {
+                          
+                        
+                              
+                           `${fns["print"]("now i need to figure out how to pass arguments")}`
+                        }
+                  }
+                 
+                 
+                 target.addEventListener("click", encap())
+             
+             }else{
+                  return
+             
+             }
+            // target.setAttribute(attr, `${functions[id]}`)
+             
+            return 
+                
+                
+             }else{
+                // normal function
+                console.log("normal function", attrs[attr])
+                val = attrs[attr].value
+             
+             }
+             
+             
+         
+         }
+      
          
          
          // console.log(attrs[attr],"THIS IS THE VAL I GOT", val)
@@ -132,9 +209,11 @@ function pluckundefined(node){
 
 
 
-export default function render(view, state){
+export default function render(view, state, fns){
     // console.log("STATE", state)
+    console.log(fns)
     Globalstate = state;
+    functions = fns;
     let view_ = []
      view.map((node, i)=> {
        if(node.root){

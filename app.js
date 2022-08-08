@@ -87,15 +87,62 @@ export default function app(Route = "",  state = {}){
                 // first render
                if(arr){
                     $v = [] 
+                    
+                    
                    Route.forEach((v, i)=> {
-                         $v.push(Render(views[v].app, state))
+                          const Vdom = views[v]
+                          if(Vdom.functions){
+                             // console.log("I have funcs's")
+                        
+                             Object.keys(Vdom.functions).map((key, i)=> {
+                                       // return when functions have already been created
+                                       Vdom.functions[key] = Function(Vdom.functions[key])()
+                             
+                             })
+                             console.log(Vdom.functions.print, "FIXED FUNCTIONS")
+                          }
+                   
+                         $v.push(Render(Vdom.app, state, Vdom.functions))
                     
                
                     })
                     return mount
                }else{
-               
-                   $v =  Render(views[Route].app, state)
+                   const vvDom = views[Route]
+                       if(vvDom.functions){
+                             console.log("I have funcs's")
+                             Object.keys(vvDom.functions).map((key, i)=> {
+                                         let args = ``
+                                         vvDom.functions[key].args.forEach((arg, i)=> {
+                                             args += arg
+                                         })
+                                       const f = Function(
+                                              `
+                                                 // console.log("args", arguments)
+                                              
+                                                  function ${vvDom.functions[key].id}(${args}){
+                                                     // console.log("called", arguments)
+                                                      ${vvDom.functions[key].body}
+                                                     // console.log("JUST RAN THE CODE")
+                                                  
+                                             
+                                                  }
+                                                ${vvDom.functions[key].id}(...arguments)
+                                                
+                                              `
+                                       
+                                       
+                                       )
+                                          console.log(f)
+                                         // console.log(f.apply(null, ['hello']), "f")
+                                         
+                                        // f("helllooooooooooooooooooooooooooooooo")
+                                       vvDom.functions[key] = f
+                             
+                             })
+                              console.log(typeof vvDom.functions.print, "fixed fns")
+                          }
+                   $v =  Render(vvDom.app, state, vvDom.functions)
                    
                    return mount
                
