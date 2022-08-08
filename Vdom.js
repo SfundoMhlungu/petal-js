@@ -126,6 +126,8 @@ function SetAttribs(target, attrs){
                 const str = attrs[attr].value
                 let args = str.slice(str.indexOf("("))
                 .replace(")", "").replace("(", "").split(",") 
+                
+                 // get real vals from the obj and pass them to onclick
                 args.forEach((arg, i)=> {
                    if(i === args.length-1){
                           composedArgs += `${arg}`
@@ -136,18 +138,22 @@ function SetAttribs(target, attrs){
                 })
                  console.log(composedArgs, "composed args")
            
-                 let id = str.slice(str.indexOf("#")+1, str.indexOf("("))
+                
                  
              // functions.print("HELLLO WORLD")
              if(attr === "onclick"){
                    // console.log(functions)
                      function encap(){
                             const fns = functions
+                             let id = str.split("#").pop().split("(")[0]
+                         
                          return function() {
+                             //  console.log(id, "ID")
+                             // console.log(fns[`${id}`])
                           
-                        
+                            fns[id]("hellloooooooooooooooooooooo cassiddooooooooo")
                               
-                           `${fns["print"]("now i need to figure out how to pass arguments")}`
+                           // `${fns.id("now i need to figure out how to pass arguments")}`
                         }
                   }
                  
