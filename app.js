@@ -13,7 +13,7 @@ export default function app(Route = "",  state = {}){
           arr = true
          Route.forEach((view, i)=> {
         
-               if(!views[view]) throw new Error(`route ${view} does not exist`)
+               if(!bundled_views[view]) throw new Error(`route ${view} does not exist`)
         
          })
         
@@ -24,7 +24,7 @@ export default function app(Route = "",  state = {}){
              throw new Error("expected route to a be a string or array")
           }
            
-         if(!views[Route]) throw new Error(`route: ${Route} does not exist`)
+         if(!bundled_views[Route]) throw new Error(`route: ${Route} does not exist`)
          
          
        
@@ -90,7 +90,7 @@ export default function app(Route = "",  state = {}){
                     
                     
                    Route.forEach((v, i)=> {
-                          const Vdom = views[v]
+                          const Vdom = bundled_views[v]
                           if(Vdom.functions){
                              // console.log("I have funcs's")
                         
@@ -108,14 +108,16 @@ export default function app(Route = "",  state = {}){
                     })
                     return mount
                }else{
-                   const vvDom = views[Route]
+                   const vvDom = bundled_views[Route]
                        if(vvDom.functions){
                              console.log("I have funcs's")
                              Object.keys(vvDom.functions).map((key, i)=> {
-                                         let args = ``
+                                         let args = []
                                          vvDom.functions[key].args.forEach((arg, i)=> {
-                                             args += arg
+                                               args.push(arg)
                                          })
+                                        args =  args.join(",")
+                                        
                                        const f = Function(
                                               `
                                                  // console.log("args", arguments)
@@ -127,6 +129,7 @@ export default function app(Route = "",  state = {}){
                                                   
                                              
                                                   }
+                                                  //console.log(${vvDom.functions[key].id})
                                                 ${vvDom.functions[key].id}(...arguments)
                                                 
                                               `

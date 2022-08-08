@@ -59,9 +59,10 @@ const talents = [
 let el = document.getElementById("app")
 console.log(el)
 
+
 // pass enough state for each component
 
-let [state, r] = App('nav', {})
+let [state, r] = App('nav_nav', {})
 
     state.update("talents",talents)
      state.update("data", data) 
@@ -72,9 +73,9 @@ let mount_page =  r.defaultRoute()
    
 mount_page(el, false)
 
-const nav = r.route("nav")
-const hero = r.route("proud")
-const an = r.route("an")
+// const nav = r.route("nav")
+// const hero = r.route("proud")
+const an = r.route("petalfiles_an")
 
 
 
@@ -83,11 +84,25 @@ const an = r.route("an")
 // r.render()
 
 
-setTimeout(()=> {r.route("nav"); state.update("nav", {name: "sk"})}, 2000)
-setTimeout(()=> {r.route("hero"); state.update("hero", {name: "mk"})}, 3000)
+// setTimeout(()=> {r.route("nav"); state.update("nav", {name: "sk"})}, 2000)
+// setTimeout(()=> {r.route("hero"); state.update("hero", {name: "mk"})}, 3000)
 setTimeout(()=> {
 
      an(el, true); 
+     let inn = document.getElementById("input_")
+     let f = document.getElementById("myForm")
+       console.log(inn)
+      inn.addEventListener("change", (event)=> {
+         event.preventDefault()
+          console.log(event)
+      
+      })
+      
+      f.addEventListener("submit", (event)=> {
+          event.preventDefault()
+          console.log(event)
+      
+      })
      
      
      }

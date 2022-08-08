@@ -120,7 +120,7 @@ function SetAttribs(target, attrs){
          }else{
            
              
-              let composedArgs =  ``
+              let composedArgs =  []
              if(attrs[attr].value.startsWith("#")){
                 // console.log("in state func")
                 const str = attrs[attr].value
@@ -129,11 +129,16 @@ function SetAttribs(target, attrs){
                 
                  // get real vals from the obj and pass them to onclick
                 args.forEach((arg, i)=> {
-                   if(i === args.length-1){
-                          composedArgs += `${arg}`
-                   }else{
-                      composedArgs += `${arg},`
-                   }
+                    let keys = arg.split(".")
+                    let val_ = Globalstate;
+                     // console.log(keys, Globalstate)
+                  // console.log(keys, "keys")
+                     keys.forEach((key)=> {
+                        val_ = val_[key.trim()]
+                        // console.log(val)
+                     })
+                     composedArgs.push(val_)
+                   
                
                 })
                  console.log(composedArgs, "composed args")
@@ -146,12 +151,13 @@ function SetAttribs(target, attrs){
                      function encap(){
                             const fns = functions
                              let id = str.split("#").pop().split("(")[0]
+                             const args = composedArgs;
                          
                          return function() {
                              //  console.log(id, "ID")
                              // console.log(fns[`${id}`])
                           
-                            fns[id]("hellloooooooooooooooooooooo cassiddooooooooo")
+                            fns[id](...args)
                               
                            // `${fns.id("now i need to figure out how to pass arguments")}`
                         }

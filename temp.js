@@ -18,8 +18,8 @@ an : {
     print: {
       type: 'function',
       id: 'print',
-      body: '\r\n   console.log(data)\r\n   \r\n\r\n\r\n',
-      args: [ 'data' ]
+      body: '\r\n   console.log(name, age)\r\n   \r\n\r\n\r\n',
+      args: [ 'name', 'age', 'avatar' ]
     },
     canPrintel: {
       type: 'function',
@@ -83,7 +83,7 @@ an : {
                   {
                     type: 'element',
                     node: 'button',
-                    attrs: { onclick: { value: '#canPrintel' } },
+                    attrs: { onclick: { value: '#canPrintel(data)' } },
                     loc: { line: 31, column: 12 },
                     parent: 3,
                     children: [
@@ -129,7 +129,7 @@ an : {
               {
                 type: 'element',
                 node: 'form',
-                attrs: {},
+                attrs: {id: "myForm"},
                 loc: { line: 36, column: 8 },
                 parent: 2,
                 children: [
@@ -152,7 +152,7 @@ an : {
                   {
                     type: 'element',
                     node: 'input',
-                    attrs: { placeholder: { value: 'data.bottom' } },
+                    attrs: { placeholder: { value: 'data.bottom' }, id: "input_" },
                     loc: { line: 39, column: 12 },
                     parent: 7
                   }

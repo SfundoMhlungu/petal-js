@@ -1,0 +1,72 @@
+local data {}
+local talents {}
+
+
+
+fn print(name, age, avatar)
+   console.log(name, age, avatar)
+   
+
+
+~end
+
+fn canPrintel(el)
+  console.log(el)
+
+
+~end
+
+
+
+~start 
+
+$div class "nsf" id "sji"
+    text {data.name}
+
+    $p class "id"
+        text "noriyega"
+    $section class "em"  
+        $p class "m"
+            text  "Sed ut perspiciatinventore verita nulla pariatur"
+            $button onclick {#canPrintel(data)} 
+                text "this is a button"
+        $div class "explanation, ll" onclick {hide(this)}
+            $h1 
+                text "I made this, spaces are important"
+        $form id "myForm"
+            $label
+                text "i should definetley"
+            $input id "input_" placeholder {data.bottom}
+
+        $div ref "l"
+            for person in data.persons  
+                $label
+                    text {person.name}
+                $label
+                    text {person.age}
+                $img src {person.avatar}  
+                $button onclick {#print(person.name, person.age, person.avatar)}
+~end                       
+
+$img src "1.jpg" id "uyh"
+$img src "2.png" id "m"
+
+   $br
+ 
+
+~start
+
+$div id "jjn"
+    $label
+        text "hello world"
+    $button class "On" onclick {operate(globObject)}
+        text "Global State"
+    $div class "talents"
+        for talent in talents
+            $label
+                text {talent.name}
+            $label
+                text {talent.level}
+    
+
+~end
