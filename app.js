@@ -108,7 +108,8 @@ export default function app(Route = "",  state = {}){
                     })
                     return mount
                }else{
-                   const vvDom = bundled_views[Route]
+                   const vvDom = bundled_views
+                   [Route]
                        if(vvDom.functions){
                              console.log("I have funcs's")
                              Object.keys(vvDom.functions).map((key, i)=> {
