@@ -6,7 +6,7 @@ local talents {}
 fn print(name, age, avatar)
    console.log(name, age, avatar)
    
-
+    
 
 ~end
 
@@ -46,6 +46,7 @@ $div class "nsf" id "sji"
                     text {person.age}
                 $img src {person.avatar}  
                 $button onclick {#print(person.name, person.age, person.avatar)}
+                    text "Print"
 ~end                       
 
 $img src "1.jpg" id "uyh"

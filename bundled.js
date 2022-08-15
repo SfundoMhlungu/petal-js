@@ -5,7 +5,7 @@ const bundled_views = {
       "print": {
         "type": "function",
         "id": "print",
-        "body": "\r\n   console.log(name, age, avatar)\r\n   \r\n\r\n\r\n",
+        "body": "\r\n   console.log(name, age, avatar)\r\n   \r\n    \r\n\r\n",
         "args": [
           "name",
           " age",
@@ -314,7 +314,19 @@ const bundled_views = {
                             "line": 48,
                             "column": 16
                           },
-                          "parent": 10
+                          "parent": 10,
+                          "children": [
+                            {
+                              "type": "textNode",
+                              "value": "Print",
+                              "inState": false,
+                              "loc": {
+                                "line": 49,
+                                "column": 20
+                              },
+                              "parent": 13
+                            }
+                          ]
                         }
                       ]
                     }
@@ -333,7 +345,7 @@ const bundled_views = {
           "id": "uyh"
         },
         "loc": {
-          "line": 51,
+          "line": 52,
           "column": 0
         }
       },
@@ -345,7 +357,7 @@ const bundled_views = {
           "id": "m"
         },
         "loc": {
-          "line": 52,
+          "line": 53,
           "column": 0
         }
       },
@@ -354,7 +366,7 @@ const bundled_views = {
         "node": "br",
         "attrs": {},
         "loc": {
-          "line": 54,
+          "line": 55,
           "column": 3
         }
       },
@@ -366,7 +378,7 @@ const bundled_views = {
             "id": "jjn"
           },
           "loc": {
-            "line": 57,
+            "line": 58,
             "column": 0
           },
           "children": [
@@ -375,20 +387,20 @@ const bundled_views = {
               "node": "label",
               "attrs": {},
               "loc": {
-                "line": 58,
+                "line": 59,
                 "column": 4
               },
-              "parent": 13,
+              "parent": 14,
               "children": [
                 {
                   "type": "textNode",
                   "value": "hello world",
                   "inState": false,
                   "loc": {
-                    "line": 59,
+                    "line": 60,
                     "column": 8
                   },
-                  "parent": 14
+                  "parent": 15
                 }
               ]
             },
@@ -402,20 +414,20 @@ const bundled_views = {
                 }
               },
               "loc": {
-                "line": 60,
+                "line": 61,
                 "column": 4
               },
-              "parent": 13,
+              "parent": 14,
               "children": [
                 {
                   "type": "textNode",
                   "value": "Global State",
                   "inState": false,
                   "loc": {
-                    "line": 61,
+                    "line": 62,
                     "column": 8
                   },
-                  "parent": 15
+                  "parent": 16
                 }
               ]
             },
@@ -426,10 +438,10 @@ const bundled_views = {
                 "class": "talents"
               },
               "loc": {
-                "line": 62,
+                "line": 63,
                 "column": 4
               },
-              "parent": 13,
+              "parent": 14,
               "children": [
                 {
                   "type": "loop",
@@ -437,30 +449,30 @@ const bundled_views = {
                   "target": "talents",
                   "attrs": {},
                   "loc": {
-                    "line": 63,
+                    "line": 64,
                     "column": 8
                   },
-                  "parent": 16,
+                  "parent": 17,
                   "children": [
                     {
                       "type": "element",
                       "node": "label",
                       "attrs": {},
                       "loc": {
-                        "line": 65,
+                        "line": 66,
                         "column": 12
                       },
-                      "parent": 17,
+                      "parent": 18,
                       "children": [
                         {
                           "type": "textNode",
                           "value": "talent.name",
                           "inState": true,
                           "loc": {
-                            "line": 66,
+                            "line": 67,
                             "column": 16
                           },
-                          "parent": 18
+                          "parent": 19
                         }
                       ]
                     },
@@ -469,20 +481,20 @@ const bundled_views = {
                       "node": "label",
                       "attrs": {},
                       "loc": {
-                        "line": 67,
+                        "line": 68,
                         "column": 12
                       },
-                      "parent": 17,
+                      "parent": 18,
                       "children": [
                         {
                           "type": "textNode",
                           "value": "talent.level",
                           "inState": true,
                           "loc": {
-                            "line": 68,
+                            "line": 69,
                             "column": 16
                           },
-                          "parent": 19
+                          "parent": 20
                         }
                       ]
                     }
